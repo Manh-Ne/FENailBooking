@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { h, ref } from "vue";
 import { NMenu } from "naive-ui";
 import { useRouter } from "vue-router";
 
@@ -29,10 +29,106 @@ export default {
   setup() {
     const router = useRouter();
 
+    const renderArrow = (expanded) => {
+      return h("i", {
+        class: expanded ? "fa fa-angle-down" : "fa fa-angle-right",
+        style: { marginRight: "8px" },
+      });
+    };
+
+    const renderDot = () => {
+      return h("i", {
+        class: "fa fa-circle",
+        style: { fontSize: "8px", marginRight: "8px" },
+      });
+    };
+
     const menuOptions = ref([
-      { label: "Dashboard", key: "dashboard" },
-      { label: "Owner", key: "owner" },
-      { label: "Staff", key: "staff" },
+      {
+        label: () =>
+          h("span", {}, [
+            h("i", { class: "fa fa-home", style: "margin-right: 8px;" }),
+            "Dashboard",
+          ]),
+        key: "dashboard",
+      },
+
+      {
+        label: () =>
+          h("span", {}, [
+            h("i", { class: "fa fa-user", style: "margin-right: 8px;" }),
+            "Chủ cửa hàng",
+          ]),
+        key: "owner",
+      },
+
+      {
+        label: () =>
+          h("div", [
+            h("i", { class: "fa fa-users", style: { marginRight: "8px" } }),
+            "Quản lý nhân viên",
+          ]),
+        key: "staff",
+        children: [
+          {
+            label: "Danh sách nhân viên",
+            key: "staff-list",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+          {
+            label: "Thêm nhân viên",
+            key: "staff-add",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+        ],
+      },
+
+      {
+        label: () =>
+          h("span", {}, [
+            h("i", {
+              class: "fa fa-address-book",
+              style: "margin-right: 8px;",
+            }),
+            "Quản lý khách hàng",
+          ]),
+        key: "customers",
+      },
+      {
+        label: () =>
+          h("span", {}, [
+            h("i", {
+              class: "fa fa-calendar-alt",
+              style: "margin-right: 8px;",
+            }),
+            "Quản lý lịch hẹn",
+          ]),
+        key: "appointments",
+      },
+      {
+        label: () =>
+          h("span", {}, [
+            h("i", { class: "fa fa-boxes", style: "margin-right: 8px;" }),
+            "Quản lý tồn kho",
+          ]),
+        key: "inventory",
+      },
+      {
+        label: () =>
+          h("span", {}, [
+            h("i", { class: "fa fa-credit-card", style: "margin-right: 8px;" }),
+            "Quản lý thanh toán",
+          ]),
+        key: "payments",
+      },
     ]);
 
     const handleMenuSelect = (key) => {
@@ -68,5 +164,14 @@ export default {
 
 .n-menu-item:hover {
   background-color: #0073e6;
+}
+
+.fa {
+  color: white;
+}
+
+.fa-circle {
+  font-size: 8px;
+  background-color: white;
 }
 </style>
