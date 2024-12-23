@@ -32,14 +32,14 @@ export default {
     const renderArrow = (expanded) => {
       return h("i", {
         class: expanded ? "fa fa-angle-down" : "fa fa-angle-right",
-        style: { marginRight: "8px" },
+        style: { marginRight: "8px", color: "white", },
       });
     };
 
     const renderDot = () => {
       return h("i", {
         class: "fa fa-circle",
-        style: { fontSize: "8px", marginRight: "8px" },
+        style: { fontSize: "8px", marginRight: "8px", color: "white", },
       });
     };
 
@@ -61,7 +61,7 @@ export default {
           ]),
         key: "owner",
       },
-
+// Quản lý nhân viên
       {
         label: () =>
           h("div", [
@@ -90,10 +90,10 @@ export default {
           },
         ],
       },
-
+// Quản lí khách hàng
       {
         label: () =>
-          h("span", {}, [
+          h("div", {}, [
             h("i", {
               class: "fa fa-address-book",
               style: "margin-right: 8px;",
@@ -101,10 +101,31 @@ export default {
             "Quản lý khách hàng",
           ]),
         key: "customers",
+        children: [
+          {
+            label: "Danh sách khách hàng",
+            key: "customers-list",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+          {
+            label: "Thêm khách hàng",
+            key: "customers-add",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+        ]
       },
+// Quản lý lịch hẹn
       {
         label: () =>
-          h("span", {}, [
+          h("div", {}, [
             h("i", {
               class: "fa fa-calendar-alt",
               style: "margin-right: 8px;",
@@ -112,7 +133,28 @@ export default {
             "Quản lý lịch hẹn",
           ]),
         key: "appointments",
+        children: [
+          {
+            label: "Danh sách lịch hẹn",
+            key: "appointments-list",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+          {
+            label: "Thêm lịch hẹn",
+            key: "appointments-add",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+        ],
       },
+// Quản lí tồn kho
       {
         label: () =>
           h("span", {}, [
@@ -120,7 +162,29 @@ export default {
             "Quản lý tồn kho",
           ]),
         key: "inventory",
+        children: [
+          {
+            label: "Danh sách sản phẩm",
+            key: "inventory-list",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+          {
+            label: "Thêm sản phẩm",
+            key: "inventory-add",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          },
+        ],
       },
+
+
       {
         label: () =>
           h("span", {}, [
@@ -138,6 +202,8 @@ export default {
     const themeOverrides = {
       itemTextColor: "#fff",
       itemTextColorHover: "#0073e6",
+      arrowColor: "white",
+      dotColor: "white",
     };
 
     return {
