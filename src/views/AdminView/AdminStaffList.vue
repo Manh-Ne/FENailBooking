@@ -12,7 +12,7 @@
 
 <script>
 import { defineComponent, ref, h } from "vue";
-import { useRouter } from "vue-router"; // Import useRouter để điều hướng
+import { useRouter } from "vue-router";
 
 function createColumns(router) {
   return [
@@ -41,7 +41,17 @@ function createColumns(router) {
             "button",
             {
               class: "btn btn-primary",
+              style: {
+                backgroundColor: "#007bff",
+                color: "white",
+                padding: "8px 12px",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                marginRight: "8px",
+              },
               onClick: () => router.push({ name: "staff-add" }),
+
             },
             "Add"
           ),
@@ -49,7 +59,14 @@ function createColumns(router) {
             "button",
             {
               class: "btn btn-warning",
-
+              style: {
+                backgroundColor: "#ffc107",
+                color: "white",
+                padding: "8px 12px",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              },
             },
             "Edit"
           ),
@@ -61,7 +78,7 @@ function createColumns(router) {
 
 export default defineComponent({
   setup() {
-    const router = useRouter(); // Khởi tạo router
+    const router = useRouter();
     const data = ref([
       { id: 1, name: "Nguyễn Quang Mạnh", age: 22, address: "Hà Nội", position: "Quản lý" },
       { id: 2, name: "Trần Thị B", age: 25, address: "Hồ Chí Minh", position: "Nhân viên" },
@@ -80,12 +97,12 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 h1 {
   margin-bottom: 16px;
   color: #333;
 }
-.btn {
+/* .btn {
   padding: 5px 10px;
   font-size: 14px;
   border: none;
@@ -100,5 +117,5 @@ h1 {
 .btn-warning {
   background-color: #ffc107;
   color: white;
-}
+} */
 </style>

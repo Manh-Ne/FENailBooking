@@ -13,6 +13,8 @@ import AdminCustomersList from "@/views/AdminView/AdminCustomersList.vue";
 import AdminCustomersAdd from "@/views/AdminView/AdminCustomersAdd.vue";
 import AdminInventoryList from "@/views/AdminView/AdminInventoryList.vue";
 import AdminInventoryAdd from "@/views/AdminView/AdminInventoryAdd.vue";
+import AdminAppointmentsList from "@/views/AdminView/AdminAppointmentsList.vue";
+import AdminAppointmentsAdd from "@/views/AdminView/AdminAppointmentsAdd.vue";
 
 const routes = [
   {
@@ -52,12 +54,12 @@ const routes = [
       {
         path: "appointments-list",
         name: "appointments-list",
-        component: AdminAppointments,
+        component: AdminAppointmentsList,
       },
       {
         path: "appointments-add",
         name: "appointments-add",
-        component: AdminAppointments,
+        component: AdminAppointmentsAdd,
       },
       {
         path: "customers",
