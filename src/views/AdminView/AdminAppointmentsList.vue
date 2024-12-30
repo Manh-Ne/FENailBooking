@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Quản Lý Lịch Hẹn</h2>
     <n-card title="Danh Sách Lịch Hẹn" style="margin-top: 20px;">
       <n-space vertical>
         <n-button type="primary" @click="onAddAppointment">Thêm Lịch Hẹn</n-button>
@@ -79,7 +78,7 @@ export default {
           key: "status",
         },
         {
-          title: "Tác Vụ",
+          title: "Chức năng",
           key: "actions",
           render: (row) =>
             [
@@ -127,12 +126,12 @@ export default {
   },
   methods: {
     onAddAppointment() {
+      this.$router.push({ name: "appointments-add" });
+    },
+    onEditAppointment() {
 
     },
-    onEditAppointment(row) {
-
-    },
-    onDeleteAppointment(row) {
+    onDeleteAppointment() {
 
     },
   },
@@ -140,7 +139,5 @@ export default {
 </script>
 
 <style scoped>
-h2 {
-  margin-top: 20px;
-}
+
 </style>

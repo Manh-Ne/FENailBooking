@@ -11,6 +11,7 @@
         <n-input-number v-model="age" placeholder="Nhập tuổi" :min="18" required />
       </n-form-item>
 
+      
       <n-form-item label="Địa chỉ" :label-placement="'top'">
         <n-input v-model="address" placeholder="Nhập địa chỉ" required />
       </n-form-item>
@@ -19,9 +20,15 @@
         <n-input v-model="position" placeholder="Nhập chức vụ" required />
       </n-form-item>
 
+      <n-form-item label="Email" :label-placement="'top'">
+        <n-input v-model="email" placeholder="Nhập email" required />
+      </n-form-item>
+
       <n-form-item>
         <n-button type="Info" html-type="submit">Thêm nhân viên</n-button>
       </n-form-item>
+
+
     </n-form>
   </div>
 </template>
@@ -45,6 +52,7 @@ export default defineComponent({
       age: null,
       address: '',
       position: '',
+      email: '',
     };
   },
   methods: {
@@ -54,14 +62,12 @@ export default defineComponent({
         age: this.age,
         address: this.address,
         position: this.position,
+        email: this.email,
       };
 
       console.log('Thêm nhân viên:', newStaff);
       this.$router.push({ name: 'staff-list' });
-      this.name = '';
-      this.age = null;
-      this.address = '';
-      this.position = '';
+
     },
   },
 });

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Danh sách khách hàng</h1>
+    <n-button type="primary" style="margin-bottom: 8px;" @click="onAddCustomer">Thêm khách hàng</n-button>
     <n-data-table
       :columns="columns"
       :data="data"
@@ -16,6 +17,11 @@ import { useRouter } from "vue-router";
 
 function createColumns(router){
   return [
+    {
+      title: "ID",
+      key: "id",
+      align: "center",
+    },
   {
       title: "Tên",
       key: "name",
@@ -23,6 +29,10 @@ function createColumns(router){
     {
       title: "Tuổi",
       key: "age",
+    },
+    {
+      title: "Giới tính",
+      key: "gender",
     },
     {
       title: "Địa chỉ",
@@ -50,16 +60,16 @@ function createColumns(router){
                 cursor: "pointer",
                 marginRight: "8px",
               },
-              onClick: () => router.push({ name: "customers-add" }),
+
             },
-            "Add"
+            "Edit"
           ),
           h(
             "button",
             {
               class: "btn btn-warning",
               style: {
-                backgroundColor: "#ffc107",
+                backgroundColor: "red",
                 color: "white",
                 padding: "8px 12px",
                 border: "none",
@@ -67,7 +77,7 @@ function createColumns(router){
                 cursor: "pointer",
               },
             },
-            "Edit"
+            "Delete"
           ),
         ]
       }
@@ -78,15 +88,19 @@ export default defineComponent({
   setup(){
     const router = useRouter();
     const data = ref([
-      { id: 1, name: "Nguyễn Quang Mạnh", age: 22, address: "Hà Nội"},
-      { id: 2, name: "Trần Thị B", age: 25, address: "Hồ Chí Minh"},
-      { id: 3, name: "Phạm Văn C", age: 35, address: "Đà Nẵng"},
-      { id: 4, name: "Lê Thị D", age: 28, address: "Huế"},
-      { id: 5, name: "Vũ Văn E", age: 22, address: "Hải Phòng"},
+      { id: 1, name: "Nguyễn Quang Mạnh", age: 22, gender: "Nam", address: "Hà Nội"},
+      { id: 2, name: "Trần Thị B", age: 25, gender: "Nữ", address: "Hồ Chí Minh"},
+      { id: 3, name: "Phạm Văn C", age: 35, gender: "Nam", address: "Đà Nẵng"},
+      { id: 4, name: "Lê Thị D", age: 28, gender: "Nữ", address: "Huế"},
+      { id: 5, name: "Vũ Văn E", age: 22, gender: "Nam", address: "Hải Phòng"},
     ]);
     const columns = createColumns(router);
+    const onAddCustomer = () => {
+      router.push({ name: 'customers-add' });
+    }
     return{
       data,
+      onAddCustomer,
       columns
     }
   }

@@ -13,8 +13,10 @@ export default {
 </script>
 
 <template>
-  <component :is="layout">
-    <RouterView />
-  </component>
+  <n-config-provider>
+    <n-dialog-provider>
+      <router-view />
+    </n-dialog-provider>
+  </n-config-provider>
 </template>
 
