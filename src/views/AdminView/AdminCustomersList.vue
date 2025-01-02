@@ -60,7 +60,9 @@ function createColumns(router){
                 cursor: "pointer",
                 marginRight: "8px",
               },
-
+              onClick: () => {
+                router.push({ name: 'customers-edit', params: { id: row.id}});
+              }
             },
             "Edit"
           ),

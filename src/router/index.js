@@ -9,12 +9,16 @@ import AdminInventory from "@/views/AdminView/AdminInventory.vue";
 import AdminPayments from "@/views/AdminView/AdminPayments.vue";
 import AdminStaffList from "@/views/AdminView/AdminStaffList.vue";
 import AdminStaffAdd from "@/views/AdminView/AdminStaffAdd.vue";
+import AdminStaffEdit from "@/views/AdminView/AdminStaffEdit.vue";
 import AdminCustomersList from "@/views/AdminView/AdminCustomersList.vue";
 import AdminCustomersAdd from "@/views/AdminView/AdminCustomersAdd.vue";
+import AdminCustomersEdit from "@/views/AdminView/AdminCustomersEdit.vue";
 import AdminInventoryList from "@/views/AdminView/AdminInventoryList.vue";
 import AdminInventoryAdd from "@/views/AdminView/AdminInventoryAdd.vue";
 import AdminAppointmentsList from "@/views/AdminView/AdminAppointmentsList.vue";
 import AdminAppointmentsAdd from "@/views/AdminView/AdminAppointmentsAdd.vue";
+
+
 
 const routes = [
   {
@@ -47,6 +51,11 @@ const routes = [
         component: AdminStaffAdd,
       },
       {
+        path: "staff-edit/:id",
+        name: "staff-edit",
+        component: AdminStaffEdit,
+      },
+      {
         path: "appointments",
         name: "appointments",
         component: AdminAppointments,
@@ -75,6 +84,11 @@ const routes = [
         path: "customers-add",
         name: "customers-add",
         component: AdminCustomersAdd,
+      },
+      {
+        path: "customers-edit/:id",
+        name: "customers-edit",
+        component: AdminCustomersEdit,
       },
       {
         path: "inventory",

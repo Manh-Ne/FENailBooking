@@ -71,7 +71,9 @@ function createColumns(router, dialog) {
                 cursor: "pointer",
                 marginRight: "8px",
               },
-
+              onClick: ()=>{
+                router.push({ name: 'staff-edit', params: { id: row.id } });
+              }
 
             },
             "Edit"

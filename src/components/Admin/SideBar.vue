@@ -88,6 +88,15 @@ export default {
                 style: { fontSize: "8px", marginRight: "8px" },
               }),
           },
+          {
+            label: "Sửa thông tin nhân viên",
+            key: "staff-edit",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          }
         ],
       },
 // Quản lí khách hàng
@@ -120,6 +129,15 @@ export default {
                 style: { fontSize: "8px", marginRight: "8px" },
               }),
           },
+          {
+            label: "Sửa thông tin khách hàng",
+            key: "customers-edit",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          }
         ]
       },
 // Quản lý lịch hẹn
@@ -152,6 +170,15 @@ export default {
                 style: { fontSize: "8px", marginRight: "8px" },
               }),
           },
+          {
+            label: "Sửa thông tin lịch hẹn",
+            key: "appointments-edit",
+            icon: () =>
+              h("i", {
+                class: "fa fa-circle",
+                style: { fontSize: "8px", marginRight: "8px" },
+              }),
+          }
         ],
       },
 // Quản lí tồn kho
