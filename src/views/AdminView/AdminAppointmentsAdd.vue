@@ -1,36 +1,41 @@
 <template>
   <div>
-    <n-card title="Thêm Lịch Hẹn" style="margin-top: 20px;">
-      <n-form :model="appointment" :rules="rules" ref="appointmentForm" label-width="120px">
-        <n-form-item label="Tên Khách Hàng" path="name">
-          <n-input v-model="appointment.name" placeholder="Nhập tên khách hàng" />
-        </n-form-item>
-        <n-form-item label="Số Điện Thoại" path="phone">
-          <n-input v-model="appointment.phone" placeholder="Nhập số điện thoại" />
-        </n-form-item>
-        <n-form-item label="Email" path="email">
-          <n-input v-model="appointment.email" type="email" placeholder="Nhập email" />
-        </n-form-item>
-        <n-form-item label="Ngày Hẹn" path="date">
-          <n-date-picker v-model="appointment.date" type="date" placeholder="Chọn ngày hẹn" />
-        </n-form-item>
-        <n-form-item label="Giờ Hẹn" path="time">
-          <n-time-picker v-model="appointment.time" placeholder="Chọn giờ hẹn" />
-        </n-form-item>
-        <n-form-item label="Dịch Vụ" path="service">
-          <n-select v-model="appointment.service" :options="serviceOptions" placeholder="Chọn dịch vụ" />
-        </n-form-item>
-        <n-form-item label="Trạng Thái" path="status">
-          <n-select v-model="appointment.status" :options="statusOptions" placeholder="Chọn trạng thái" />
-        </n-form-item>
-        <n-form-item>
-          <n-space>
-            <n-button type="primary" @click="onSubmit">Lưu</n-button>
-            <n-button @click="onCancel">Hủy</n-button>
-          </n-space>
-        </n-form-item>
-      </n-form>
-    </n-card>
+    <h1>Thêm Lịch Hẹn</h1>
+
+    <n-form @submit.prevent="onSubmit" :model="appointment" :rules="rules" ref="appointmentForm" label-width="120px">
+      <n-form-item label="Tên Khách Hàng" path="name">
+        <n-input v-model="appointment.name" placeholder="Nhập tên khách hàng" required />
+      </n-form-item>
+
+      <n-form-item label="Số Điện Thoại" path="phone">
+        <n-input v-model="appointment.phone" placeholder="Nhập số điện thoại" required />
+      </n-form-item>
+
+      <n-form-item label="Email" path="email">
+        <n-input v-model="appointment.email" type="email" placeholder="Nhập email" required />
+      </n-form-item>
+
+      <n-form-item label="Ngày Hẹn" path="date">
+        <n-date-picker v-model="appointment.date" type="date" placeholder="Chọn ngày hẹn" required />
+      </n-form-item>
+
+      <n-form-item label="Giờ Hẹn" path="time">
+        <n-time-picker v-model="appointment.time" placeholder="Chọn giờ hẹn" required />
+      </n-form-item>
+
+      <n-form-item label="Dịch Vụ" path="service">
+        <n-select v-model="appointment.service" :options="serviceOptions" placeholder="Chọn dịch vụ" required />
+      </n-form-item>
+
+      <n-form-item label="Trạng Thái" path="status">
+        <n-select v-model="appointment.status" :options="statusOptions" placeholder="Chọn trạng thái" required />
+      </n-form-item>
+
+      <n-form-item>
+        <n-button type="primary" html-type="submit" style="margin-right: 8px;">Lưu</n-button>
+        <n-button @click="onCancel">Hủy</n-button>
+      </n-form-item>
+    </n-form>
   </div>
 </template>
 
@@ -86,4 +91,17 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+n-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+n-form-item {
+  margin-bottom: 16px;
+}
 </style>

@@ -17,6 +17,7 @@ import AdminInventoryList from "@/views/AdminView/AdminInventoryList.vue";
 import AdminInventoryAdd from "@/views/AdminView/AdminInventoryAdd.vue";
 import AdminAppointmentsList from "@/views/AdminView/AdminAppointmentsList.vue";
 import AdminAppointmentsAdd from "@/views/AdminView/AdminAppointmentsAdd.vue";
+import AdminAppointmentsEdit from "@/views/AdminView/AdminAppointmentsEdit.vue";
 
 
 
@@ -69,6 +70,11 @@ const routes = [
         path: "appointments-add",
         name: "appointments-add",
         component: AdminAppointmentsAdd,
+      },
+      {
+        path: "appointments-edit/:id",
+        name: "appointments-edit",
+        component: AdminAppointmentsEdit,
       },
       {
         path: "customers",
