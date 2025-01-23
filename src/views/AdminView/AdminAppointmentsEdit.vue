@@ -50,14 +50,13 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const route = useRoute();
-
     const formData = ref({
-      id: route.params.id || "",
+      id: route.params.id || "1",
       name: "Nguyễn Văn A",
       phone: "0123456789",
       email: "nguyenvana@gmail.com",
       date: "2024-12-01",
-      time: "14:30", 
+      time: "09:00",
       service: "Làm nail",
       status: "Đã đặt",
     });
@@ -65,7 +64,6 @@ export default defineComponent({
     const serviceOptions = [
       { label: "Làm nail", value: "Làm nail" },
       { label: "Tư vấn", value: "Tư vấn" },
-      { label: "Cắt tóc", value: "Cắt tóc" },
     ];
 
     const statusOptions = [
@@ -88,13 +86,13 @@ export default defineComponent({
 
 
 
-    const onSave = () => {
-      if (!formData.value.time || !/^\d{2}:\d{2}$/.test(formData.value.time)) {
-        alert("Giờ hẹn không hợp lệ");
-        return;
-      }
-      router.push({ name: "appointments-list" });
-    };
+    // const onSave = () => {
+    //   if (!formData.value.time || !/^\d{2}:\d{2}$/.test(formData.value.time)) {
+    //     alert("Giờ hẹn không hợp lệ");
+    //     return;
+    //   }
+    //   router.push({ name: "appointments-list" });
+    // };
 
 
     const onCancel = () => {
@@ -106,7 +104,7 @@ export default defineComponent({
       serviceOptions,
       statusOptions,
       rules,
-      onSave,
+      // onSave,
       onCancel,
     };
   },

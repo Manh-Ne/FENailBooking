@@ -53,14 +53,14 @@ export default {
         key: "dashboard",
       },
 
-      {
-        label: () =>
-          h("span", {}, [
-            h("i", { class: "fa fa-user", style: "margin-right: 8px;" }),
-            "Chủ cửa hàng",
-          ]),
-        key: "owner",
-      },
+      // {
+      //   label: () =>
+      //     h("span", {}, [
+      //       h("i", { class: "fa fa-user", style: "margin-right: 8px;" }),
+      //       "Chủ cửa hàng",
+      //     ]),
+      //   key: "owner",
+      // },
 // Quản lý nhân viên
       {
         label: () =>
