@@ -56,7 +56,7 @@ export default defineComponent({
       phone: "0123456789",
       email: "nguyenvana@gmail.com",
       date: "2024-12-01",
-      time: "09:00",
+      time: new Date("2024-12-01 09:00:00").getTime(),
       service: "Làm nail",
       status: "Đã đặt",
     });
@@ -112,23 +112,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.edit-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
 </style>
