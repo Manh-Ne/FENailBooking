@@ -8,17 +8,19 @@
     <!-- Main Layout -->
     <n-layout has-sider>
       <!-- Sidebar -->
-      <n-layout-sider :collapsed="collapsed" class="sidebar">
+      <n-layout-sider :class="['sidebar', { collapsed }]" :collapsed="collapsed">
         <div class="toggle-icon" @click="toggleSidebar">
           <n-icon size="24">
             <i class="fa fa-bars"></i>
           </n-icon>
         </div>
 
-        <!-- Sidebar Menu -->
-        <div v-if="!collapsed" class="sidebar-menu">
-          <SideBarMenu :isSidebarOpen="!collapsed" />
-        </div>
+        <!-- Sidebar Content -->
+        <transition name="sidebar-fade">
+          <div v-show="!collapsed" class="sidebar-menu">
+            <SideBarMenu :isSidebarOpen="!collapsed" />
+          </div>
+        </transition>
       </n-layout-sider>
 
       <!-- Main Content -->
@@ -74,6 +76,7 @@ export default defineComponent({
   flex-direction: column;
 }
 
+
 .header {
   height: 64px;
   background-color: #f4f4f4;
@@ -85,6 +88,7 @@ export default defineComponent({
   z-index: 1000;
 }
 
+
 .sidebar {
   width: 240px;
   background-color: #1f2937;
@@ -92,13 +96,14 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: all 0.3s ease;
+  transition: width 0.6s ease;
   height: calc(100vh - 64px);
 }
 
 .sidebar.collapsed {
   width: 64px;
 }
+
 
 .toggle-icon {
   position: absolute;
@@ -113,18 +118,36 @@ export default defineComponent({
   color: #0073e6;
 }
 
+
 .sidebar-menu {
   flex: 1;
   padding-top: 20px;
-  opacity: 1;
-  transition: opacity 1s ease-in-out;
 }
 
+
+.sidebar-fade-enter-active {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.sidebar-fade-leave-active {
+  transition: transform 0.3s;
+}
+.sidebar-fade-enter-from,
+.sidebar-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.sidebar-fade-enter-to,
+.sidebar-fade-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Main Content */
 .main-content {
   flex-grow: 1;
   padding: 20px;
   background-color: #f9f9f9;
   overflow-y: auto;
-  transition: margin-left 1s ease-in-out;
+  transition: margin-left 0.6s ease-in-out;
 }
 </style>

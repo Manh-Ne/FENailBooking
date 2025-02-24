@@ -181,35 +181,7 @@ export default {
           }
         ],
       },
-// Quản lí tồn kho
-      // {
-      //   label: () =>
-      //     h("span", {}, [
-      //       h("i", { class: "fa fa-boxes", style: "margin-right: 8px;" }),
-      //       "Quản lý tồn kho",
-      //     ]),
-      //   key: "inventory",
-      //   children: [
-      //     {
-      //       label: "Danh sách sản phẩm",
-      //       key: "inventory-list",
-      //       icon: () =>
-      //         h("i", {
-      //           class: "fa fa-circle",
-      //           style: { fontSize: "8px", marginRight: "8px" },
-      //         }),
-      //     },
-      //     {
-      //       label: "Thêm sản phẩm",
-      //       key: "inventory-add",
-      //       icon: () =>
-      //         h("i", {
-      //           class: "fa fa-circle",
-      //           style: { fontSize: "8px", marginRight: "8px" },
-      //         }),
-      //     },
-      //   ],
-      // },
+
 
 
       {
@@ -244,7 +216,6 @@ export default {
 
 <style scoped>
 .sidebar-menu {
-  height: 100%;
   background-color: #1f2937;
   color: white;
   overflow-y: auto;

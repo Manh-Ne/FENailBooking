@@ -23,7 +23,7 @@ import AdminAppointmentsEdit from "@/views/AdminView/AdminAppointmentsEdit.vue";
 
 const routes = [
   {
-    path: "/admin",
+    path: "/",
     component: LayoutAdmin,
     children: [
       {
