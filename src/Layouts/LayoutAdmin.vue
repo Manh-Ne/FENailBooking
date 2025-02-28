@@ -97,7 +97,7 @@ export default defineComponent({
   flex-direction: column;
   position: relative;
   transition: width 0.6s ease;
-  height: calc(100vh - 64px);
+  /* height: calc(100vh - 64px); */
 }
 
 .sidebar.collapsed {
