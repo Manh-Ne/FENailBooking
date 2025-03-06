@@ -18,6 +18,7 @@ import AdminInventoryAdd from "@/views/AdminView/AdminInventoryAdd.vue";
 import AdminAppointmentsList from "@/views/AdminView/AdminAppointmentsList.vue";
 import AdminAppointmentsAdd from "@/views/AdminView/AdminAppointmentsAdd.vue";
 import AdminAppointmentsEdit from "@/views/AdminView/AdminAppointmentsEdit.vue";
+import AdminPermission from "@/views/AdminView/AdminPermission.vue";
 
 
 
@@ -116,6 +117,11 @@ const routes = [
         name: "payments",
         component: AdminPayments,
       },
+      {
+        path: "permissions",
+        name: "permissions",
+        component: AdminPermission,
+      }
     ],
   },
 ];

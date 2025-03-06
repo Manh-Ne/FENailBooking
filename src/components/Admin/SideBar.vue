@@ -1,5 +1,13 @@
 <template>
   <div class="sidebar-menu">
+    <!-- <div class="role-selector">
+      <label>Vai trò: </label>
+      <select v-model="selectedRole" @change="updateMenu">
+        <option value="manager">Manager</option>
+        <option value="staff">Staff</option>
+        <option value="user">User</option>
+      </select>
+    </div> -->
     <n-menu
       :options="menuOptions"
       @update:value="handleMenuSelect"
@@ -192,6 +200,23 @@ export default {
           ]),
         key: "payments",
       },
+
+        {
+          label: () =>
+            h("span", {}, [
+              h("i", { class: "fa fa-cogs", style: "margin-right: 8px;" }),
+              "Quyền hạn cho phép",
+            ]),
+          key: "permissions",
+        },
+        {
+          label: () =>
+            h("span", {}, [
+              h("i", { class: "fa fa-sign-out", style: "margin-right: 8px;" }),
+              "Logout",
+            ]),
+          key: "logout",
+        },
     ]);
 
     const handleMenuSelect = (key) => {
@@ -220,7 +245,22 @@ export default {
   color: white;
   overflow-y: auto;
 }
-
+.role-selector {
+  padding: 10px;
+  background: #1f2937;
+  margin-left: 25px;
+}
+.role-selector label {
+  color: white;
+  font-size: 16px;
+}
+.role-selector select {
+  padding: 5px;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 .n-menu-item {
   padding: 12px 15px;
   font-size: 16px;
