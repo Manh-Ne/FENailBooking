@@ -13,9 +13,11 @@ export default {
 </script>
 
 <template>
-  <n-config-provider>
+   <n-config-provider>
     <n-dialog-provider>
-      <router-view />
+      <n-message-provider>
+        <router-view />
+      </n-message-provider>
     </n-dialog-provider>
   </n-config-provider>
 </template>

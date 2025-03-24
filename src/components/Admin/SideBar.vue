@@ -204,6 +204,22 @@ export default {
         {
           label: () =>
             h("span", {}, [
+              h("i", { class: "fa fa-user", style: "margin-right: 8px;" }),
+              "Quản lí hàng nhập xuất kho",
+            ]),
+          key: "export",
+        },
+        {
+          label: () =>
+            h("span", {}, [
+              h("i", { class: "fa fa-user", style: "margin-right: 8px;" }),
+              "Quản lý dịch vụ trong quán",
+            ]),
+          key: "services",
+        },
+        {
+          label: () =>
+            h("span", {}, [
               h("i", { class: "fa fa-cogs", style: "margin-right: 8px;" }),
               "Quyền hạn cho phép",
             ]),

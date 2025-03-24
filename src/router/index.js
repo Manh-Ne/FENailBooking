@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LayoutAdmin from "@/Layouts/LayoutAdmin.vue";
 import AdminDashboard from "@/views/AdminView/AdminDashboard.vue";
-import AdminOwner from "@/views/AdminView/AdminOwner.vue";
+import AdminExport from "@/views/AdminView/AdminExport.vue";
 import AdminStaff from "@/views/AdminView/AdminStaff.vue";
 import AdminAppointments from "@/views/AdminView/AdminAppointments.vue";
 import AdminCustomers from "@/views/AdminView/AdminCustomers.vue";
@@ -19,7 +19,9 @@ import AdminAppointmentsList from "@/views/AdminView/AdminAppointmentsList.vue";
 import AdminAppointmentsAdd from "@/views/AdminView/AdminAppointmentsAdd.vue";
 import AdminAppointmentsEdit from "@/views/AdminView/AdminAppointmentsEdit.vue";
 import AdminPermission from "@/views/AdminView/AdminPermission.vue";
-
+import LoginView from "@/views/LoginView.vue";
+import RegisterView from "@/views/RegisterView.vue";
+import AdminService from "@/views/AdminView/AdminService.vue";
 
 
 const routes = [
@@ -33,9 +35,14 @@ const routes = [
         component: AdminDashboard,
       },
       {
-        path: "owner",
-        name: "owner",
-        component: AdminOwner,
+        path: "export",
+        name: "export",
+        component: AdminExport,
+      },
+      {
+        path: "services",
+        name: "services",
+        component: AdminService,
       },
       {
         path: "staff",
@@ -122,8 +129,19 @@ const routes = [
         name: "permissions",
         component: AdminPermission,
       }
-    ],
+    ]
   },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginView,
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterView,
+  },
+
 ];
 
 const router = createRouter({

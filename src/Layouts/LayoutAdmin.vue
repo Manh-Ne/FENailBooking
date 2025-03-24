@@ -1,6 +1,6 @@
 <template>
   <n-layout class="layout-admin">
-    
+
     <!-- Header -->
     <n-layout-header class="header">
       <HeaderAdmin />
@@ -98,7 +98,7 @@ export default defineComponent({
   flex-direction: column;
   position: relative;
   transition: width 0.6s ease;
-  height: calc(100vh - 64px);
+  height: 150vh;
 }
 
 .sidebar.collapsed {
