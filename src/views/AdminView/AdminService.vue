@@ -4,46 +4,51 @@
 
     <n-form ref="formRef" :model="form" :rules="rules">
       <div class="form-group">
-        <n-select v-model:value="form.name" :options="serviceOptions" placeholder="Tên dịch vụ" class="large-input" />
+        <n-input v-model:value="form.name" placeholder="Tên dịch vụ" class="large-input" />
         <n-input-number v-model:value="form.price" placeholder="Giá" class="large-input" />
-        <n-date-picker v-model:value="form.time" type="datetime" placeholder="Thời gian" class="medium-input" />
+        <n-input-number v-model:value="form.duration" placeholder="Thời gian thực hiện (phút)" class="medium-input" />
         <n-button type="primary" @click="addService">{{ isEditing ? "Cập nhật" : "Thêm dịch vụ" }}</n-button>
+        <n-button @click="resetForm()">Hủy</n-button>
       </div>
     </n-form>
 
-    <n-data-table :columns="columns" :data="serviceData" />
+    <n-data-table :columns="columns" :data="serviceData" :loading="loading" />
   </div>
 </template>
 
 <script>
 import { ref, reactive, h } from "vue";
 import { useMessage, NButton } from "naive-ui";
+import service from "@/Models/service";
 
 export default {
   setup() {
     const message = useMessage();
+    const loading = ref(false);
     const form = reactive({
-      id: null,
       name: "",
       price: null,
-      time: null,
+      duration: null,
     });
     const isEditing = ref(false);
     const rules = {
       name: [{ required: true, message: "Tên dịch vụ không được để trống", trigger: "blur" }],
       price: [{ required: true, message: "Nhập giá dịch vụ", trigger: "blur" }],
-      time: [{ required: true, message: "Thời gian không được để trống", trigger: "blur" }],
+      duration: [{ required: true, message: "Thời gian không được để trống", trigger: "blur" }],
     };
 
-    const serviceOptions = [
-      { label: "Làm nail", value: "Nail" },
-      { label: "Gội đầu", value: "Headwashing" },
-    ];
+    var serviceData = ref([]);
 
-    const serviceData = ref([]);
+    const getAllServices = async () => {
+      loading.value = true;
+      serviceData.value = await service.getAllServices()
+      loading.value = false;
+    };
 
-    const addService = () => {
-      if (!form.name || !form.price || !form.time) {
+    getAllServices();
+
+    const addService = async () => {
+      if (!form.name || !form.price || !form.duration) {
         message.error("Vui lòng nhập đầy đủ thông tin!");
         return;
       }
@@ -52,41 +57,38 @@ export default {
         // Cập nhật dữ liệu
         const index = serviceData.value.findIndex((s) => s.id === form.id);
         if (index !== -1) {
-          serviceData.value[index] = { ...form, time: new Date(form.time).toISOString() };
+          await service.updateService(form);
           message.success("Cập nhật dịch vụ thành công!");
         }
       } else {
         // Thêm mới dịch vụ
-        serviceData.value.push({
-          id: Date.now(),
-          name: form.name,
-          price: form.price,
-          time: new Date(form.time).toISOString(),
-        });
+        await service.createService(form);
         message.success("Thêm dịch vụ thành công!");
       }
-
+      getAllServices();
       resetForm();
     };
 
     const editService = (id) => {
       const service = serviceData.value.find((s) => s.id === id);
+      console.log(service.price.replace(".", ""), "djadksahdka");
       if (service) {
         form.id = service.id;
         form.name = service.name;
-        form.price = service.price;
-        form.time = new Date(service.time);
+        form.price = Number(service.price);
+        form.duration = Number(service.duration);
         isEditing.value = true;
       }
     };
 
-    const deleteService = (id) => {
-      serviceData.value = serviceData.value.filter((s) => s.id !== id);
+    const deleteService = async (id) => {
+      await service.deleteService(id);
+      getAllServices();
       message.success("Xóa dịch vụ thành công!");
     };
 
     const resetForm = () => {
-      Object.assign(form, { id: null, name: "", price: null, time: null });
+      Object.assign(form, { id: null, name: "", price: null, duration: null });
       isEditing.value = false;
     };
 
@@ -94,12 +96,25 @@ export default {
       { title: "Tên dịch vụ", key: "name", width: 250 },
       { title: "Giá", key: "price", width: 150 },
       {
-        title: "Thời gian",
-        key: "time",
+        title: "Thời gian thực hiện",
+        key: "duration",
+        width: 200
+      },
+      {
+        title: "Ngày tạo",
+        key: "created_at",
         width: 200,
         render(row) {
-          return row.time ? new Date(row.time).toLocaleString("vi-VN", { hour12: false }) : "Không xác định";
+          return new Date(row.created_at).toLocaleDateString();
         },
+      },
+      {
+        title: "Ngày cập nhật",
+        key: "updated_at",
+        width: 200,
+        render(row) {
+          return new Date(row.updated_at).toLocaleDateString();
+        }
       },
       {
         title: "Hành động",
@@ -130,8 +145,8 @@ export default {
       editService,
       deleteService,
       columns,
-      serviceOptions,
       isEditing,
+      resetForm
     };
   },
 };
