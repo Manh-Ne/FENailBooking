@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Repositories\Item\ItemRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 
 
-class ItemController extends Controller
+class ProductController extends Controller
 {
-    protected $itemRepository;
-    public function __construct(ItemRepositoryInterface $itemRepository)
+    protected $ProductRepository;
+    public function __construct(ProductRepositoryInterface $ProductRepository)
     {
-        $this->itemRepository = $itemRepository;
+        $this->ProductRepository = $ProductRepository;
     }
     public function index()
     {
-        return response()->json($this->itemRepository->getAll());
+        return response()->json($this->ProductRepository->getAll());
     }
     /**
      * Display a listing of the resource.
@@ -33,7 +33,7 @@ class ItemController extends Controller
             'quantity' => 'required|integer|min:1',
             'type' => 'required|string|in:service,product',
         ]);
-        return response()->json($this->itemRepository->create($validated), 201);
+        return response()->json($this->ProductRepository->create($validated), 201);
     }
 
 
@@ -42,7 +42,7 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        return response()->json($this->itemRepository->findById($id));
+        return response()->json($this->ProductRepository->findById($id));
     }
 
     /**
@@ -57,7 +57,7 @@ class ItemController extends Controller
             'type' => 'sometimes|required|string|in:import,export',
             'time' => 'sometimes|required|date',
         ]);
-        return response()->json($this->itemRepository->update($id, $validated));
+        return response()->json($this->ProductRepository->update($id, $validated));
     }
 
     /**
@@ -65,7 +65,7 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->itemRepository->delete($id);
+        $this->ProductRepository->delete($id);
         return response()->json_decode(null, 204);
     }
 }

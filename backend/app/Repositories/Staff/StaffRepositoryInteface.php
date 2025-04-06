@@ -1,6 +1,6 @@
 <?php
-namespace App\Repositories\Item;
-interface ItemRepositoryInterface
+namespace App\Repositories\Staff;
+interface StaffRepositoryInterface
 {
     public function getAll();
     public function findById($id);
