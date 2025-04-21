@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\CustomerController;
 // Home route
 Route::get('/', function () {
     return view('welcome');
@@ -24,9 +25,16 @@ Route::prefix('products')->group(function () {
     Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy'); // Delete an product
 });
 // Staff routes
-Route::prefix('staffs')->group(function(){
-    Route::get('/', [StaffController::class, 'index'])->name('staffs.index');
-    Route::post('/', [StaffController::class, 'store'])->name('staffs.store');
-    Route::put('/{staff}', [StaffController::class, 'update'])->name('staffs.update');
-    Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('staffs.destroy');
+Route::prefix('staff')->group(function(){
+    Route::get('/', [StaffController::class, 'index'])->name('staff.index');
+    Route::post('/', [StaffController::class, 'store'])->name('staff.store');
+    Route::put('/{staff}', [StaffController::class, 'update'])->name('staff.update');
+    Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('staff.destroy');
+});
+// Customer routes
+Route::prefix('customers')->group(function(){
+    Route::get('/', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('/', [CustomerController::class, 'store'])->name('customers.store');
+    Route::put('/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+    Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 });

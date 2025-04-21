@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = '/api/staffs';
+const API_BASE_URL = '/api/staff';
 
 const StaffAPI = {
     getAllStaffs: () => {

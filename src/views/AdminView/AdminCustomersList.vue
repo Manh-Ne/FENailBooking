@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import { defineComponent, ref, h } from "vue";
+import { defineComponent, ref, h, onMounted } from "vue";
 import { useRouter } from "vue-router";
-
+import CustomerAPI from "@/Models/customer";
 function createColumns(router){
   return [
     {
@@ -89,21 +89,41 @@ function createColumns(router){
 export default defineComponent({
   setup(){
     const router = useRouter();
-    const data = ref([
-      { id: 1, name: "Nguyễn Quang Mạnh", age: 22, gender: "Nam", address: "Hà Nội"},
-      { id: 2, name: "Trần Thị B", age: 25, gender: "Nữ", address: "Hồ Chí Minh"},
-      { id: 3, name: "Phạm Văn C", age: 35, gender: "Nam", address: "Đà Nẵng"},
-      { id: 4, name: "Lê Thị D", age: 28, gender: "Nữ", address: "Huế"},
-      { id: 5, name: "Vũ Văn E", age: 22, gender: "Nam", address: "Hải Phòng"},
-    ]);
+    const data = ref([]);
     const columns = createColumns(router);
+    const fetchCustomer = async () =>{
+      try {
+        const response = await CustomerAPI.getAllCustomer();
+        data.value = response.data;
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+      }
+    };
+    const handleDelete = async (id) => {
+      if (confirm("Bạn có chắc chắn muốn xóa khách hàng này?")){
+        try {
+          await CustomerAPI.deleteCustomer(id);
+          data.value = data.value.filter(customer => customer.id !== id);
+          alert("Xóa khách hàng thành công!");
+          await fetchCustomer();
+        } catch (error) {
+          console.error("Error deleting customer:", error);
+          alert("Xóa khách hàng thất bại!");
+        }
+      }
+    };
     const onAddCustomer = () => {
       router.push({ name: 'customers-add' });
-    }
+    };
+    onMounted(() => {
+      fetchCustomer();
+    });
     return{
       data,
       onAddCustomer,
-      columns
+      columns,
+      fetchCustomer,
+      handleDelete,
     }
   }
 })
